@@ -1,0 +1,36 @@
+<h1>Hello belt exam!</h1>
+
+<div id="create_user">
+  <form action="/users" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+
+    <label>First Name</label>
+    <input type="text" name="user[first_name]">
+
+    <label>Last Name</label>
+    <input type="text" name="user[last_name]">
+
+    <label>Email</label>
+    <input type="text" name="user[email]">
+
+    <label>Password</label>
+    <input type="password" name="user[password]">
+
+    <label>Password Confirmation</label>
+    <input type="password" name="user[password_confirmation]">
+    
+    <input type="submit" name="submit" value="Create New">
+  </form>
+
+</div>
+
+<div id="login_user">
+  <form action="/sessions" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+    <label>Email</label>
+    <input type="text" name="login[email]">
+    <label>Password</label>
+    <input type="password" name="login[password]">
+    <input type="submit" name="Login" value="Login">
+  </form>
+</div>
