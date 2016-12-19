@@ -1,0 +1,6 @@
+<p>Name: <%= @user.first_name %> <%= @user.last_name %></p>
+<p>Email: <%= @user.email%></p>
+
+<p>Total number of Idea:<%= @user.ideas.count%> </p>
+<%= link_to 'Bright Ideas', users_path %>
+<%= link_to 'Logout', sessions_path %>

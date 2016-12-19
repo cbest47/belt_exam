@@ -1,8 +1,15 @@
 class UsersController < ApplicationController
   #add before action before you deploy
   def index
+    @user1 = User.find(session[:user_id])
+    @ideas = Idea.all.includes(:user)
+  
+
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
   def create
     @user = User.create(user_params)
     if @user.errors.any?

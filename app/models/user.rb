@@ -1,5 +1,11 @@
 class User < ApplicationRecord
   has_secure_password
+  has_many :ideas
+  has_many :likes
+  has_many :ideas_liked, through: :likes, source: :idea
+  email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
+
   validates :first_name, :last_name, :email, :password, presence:true
-  validates_format_of :email, :with => /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i
+  validates :email, :presence => true, :format => { :with => email_regex }, :uniqueness => { :case_sensitive => false }
+
 end

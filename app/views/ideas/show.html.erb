@@ -1,0 +1,28 @@
+<h1>Bonjour, Mec</h1>
+
+<a href="/sessions/<%=session[:user_id]%>" data-method="delete">Logout</a>
+<%= link_to 'Bright Ideas', users_path %>
+<!-- below is all the Idea/like information -->
+<div>
+  <p>
+    <a href="/users/<%= @idea.id %>" name="user[id]" method="get">
+      <%= @idea.user.first_name %>
+    </a> says: <%= @idea.content %>
+  </p>
+</div>
+
+<p> People who liked this post:</p>
+<table>
+  <thead>
+    <tr>
+      <td>First Name</td>
+      <td>Last Name</td>
+    </tr>
+  </thead>
+<% @like.each do |like|%>
+<tr>
+  <td><%= like.user.first_name %></td>
+  <td><%= like.user.last_name %></td>
+</tr>
+<% end %>
+</table>

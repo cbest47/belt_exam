@@ -1,2 +1,30 @@
-<h1>Hello World! </h1>
+<h1>Hi <%= @user1.first_name %>!</h1>
+<!-- logout button below -->
 <a href="/sessions/<%=session[:user_id]%>" data-method="delete">Logout</a>
+
+<form action="/ideas" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+  <textarea id="new_idea" name="idea[content]" cols="50" rows="3" maxlength="150" placeholder="Insert your ideas here!"></textarea>
+  <input type="submit" name="submit" value="Idea!">
+</form>
+
+<% @ideas.each do |idea| %>
+  <p><a href="/users/<%= idea.user.id %>" name="user[id]" method="get"><%= idea.user.first_name %> <%= idea.user.last_name %></a>
+  <%= idea.content%>
+  <!--add the number of likes here! Try using a like.where function -->
+  <p><%= idea.likes.count %>
+  <a href="/ideas/<%= idea.id %>" name="idea[id]" method="get">
+    people like this idea
+  </a>
+
+
+  </p>
+
+  <!-- below is the like button form -->
+  <form action="/likes" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>">
+    <input type="hidden" name="idea[id]" value="<%= idea.id %>">
+    <input type="submit" name="submit" value="Like">
+  </form>
+  </p>
+<% end %>
