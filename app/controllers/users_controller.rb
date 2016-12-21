@@ -2,8 +2,7 @@ class UsersController < ApplicationController
   #add before action before you deploy
   def index
     @user1 = User.find(session[:user_id])
-    @ideas = Idea.all.includes(:user)
-  
+    @ideas = Idea.all.includes(:user).order("created_at DESC")
 
   end
 
